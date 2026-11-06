@@ -1,3 +1,16 @@
+# v2.4.6-tp.1 (2026-11-07)
+
+Our fork, based on 2.4.6.
+
+## Added:
+
+- `track.audio.true_peak_limit` and the `true_peak_limit` script function: a
+  true-peak limiter. The gain is computed from the peak that a decoder
+  reconstructs between samples (polyphase Kaiser-windowed sinc interpolator,
+  2/4/8 times oversampling), with an instantaneous attack, a release and a
+  lookahead window, so MP3, AAC and Vorbis streams do not clip above 0 dBFS.
+  Sample peaks alone miss such overshoots by up to about 1 dB.
+
 # 2.4.6 (2026-10-08)
 
 ## Fixed:

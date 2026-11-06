@@ -81,6 +81,23 @@ end
 
 let limiter = limit
 
+# A true-peak limiter: the gain drops before the peak that a codec decoder
+# rebuilds between the samples, unlike `limit`, which only sees sample peaks.
+# @category Source / Audio processing
+# @flag extra
+def true_peak_limit(%argsof(track.audio.true_peak_limit), s) =
+  tracks = source.tracks(s)
+  source(
+    tracks.{
+      audio=
+        track.audio.true_peak_limit(
+          %argsof(track.audio.true_peak_limit),
+          tracks.audio
+        )
+    }
+  )
+end
+
 # A bandpass filter obtained by chaining a low-pass and a high-pass filter.
 # @category Source / Audio processing
 # @flag extra
